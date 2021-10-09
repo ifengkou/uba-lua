@@ -1,0 +1,51 @@
+本机 ，2w 并发，20w 总请求数， 写kafka（batch insert 500）
+ab -n 200000 -c 20000 -p postdata.txt -T application/json "http://10.128.2.86/test_kafka2"
+
+Concurrency Level:      20000
+Time taken for tests:   9.991 seconds
+Complete requests:      200000
+Failed requests:        0
+Write errors:           0
+Total transferred:      33000000 bytes
+Total body sent:        77400000
+HTML transferred:       600000 bytes
+Requests per second:    20018.33 [#/sec] (mean)
+Time per request:       999.085 [ms] (mean)
+Time per request:       0.050 [ms] (mean, across all concurrent requests)
+Transfer rate:          3225.61 [Kbytes/sec] received
+                        7565.52 kb/s sent
+                        10791.13 kb/s total
+
+Concurrency Level:      20000
+Time taken for tests:   3.919 seconds
+Complete requests:      100000
+Failed requests:        201120
+   (Connect: 0, Receive: 0, Length: 103851, Exceptions: 97269)
+Write errors:           0
+Total transferred:      450615 bytes
+Total body sent:        38700000
+HTML transferred:       8193 bytes
+Requests per second:    25516.61 [#/sec] (mean)
+Time per request:       783.803 [ms] (mean)
+Time per request:       0.039 [ms] (mean, across all concurrent requests)
+Transfer rate:          112.29 [Kbytes/sec] received
+                        9643.48 kb/s sent
+                        9755.77 kb/s total
+
+
+局域网 ，1w 并发，10w 总请求数， 写kafka：调大 kafka 批量写入数
+Concurrency Level:      10000
+Time taken for tests:   10.726 seconds
+Complete requests:      100000
+Failed requests:        3384
+   (Connect: 0, Receive: 0, Length: 2989, Exceptions: 395)
+Write errors:           0
+Total transferred:      16006815 bytes
+Total body sent:        38700000
+HTML transferred:       291033 bytes
+Requests per second:    9322.72 [#/sec] (mean)
+Time per request:       1072.649 [ms] (mean)
+Time per request:       0.107 [ms] (mean, across all concurrent requests)
+Transfer rate:          1457.29 [Kbytes/sec] received
+                        3523.33 kb/s sent
+                        4980.63 kb/s total

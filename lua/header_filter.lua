@@ -15,13 +15,12 @@ if m ～= nil then
 end
 
 -- 版本 低于1.1.2 sdk的日志上报将直接拒绝接收
+local headers = ngx.req.get_headers()
+local sdk_version = headers["lib-version"]
 local sv = string.gsub(sdk_version,"%.","")
--- ngx.log(ngx.ERR,sv)
 local version= tonumber(sv);
 if version < 112 then
-    ngx.status = ngx.HTTP_FORBIDDEN
-    --ngx.say(403) response 
-    ngx.exit(ngx.status)
+    ngx.exit(ngx.HTTP_FORBIDDEN)
 end
 return
 

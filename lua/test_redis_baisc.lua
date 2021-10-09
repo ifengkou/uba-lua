@@ -24,7 +24,7 @@ end
   if not ok then
     return
   end
-  local res, err = red:auth("wsy@123456")
+  local res, err = red:auth("abc@123456")
   if not res then
     ngx.say("connect to redis error : ", err)
     return

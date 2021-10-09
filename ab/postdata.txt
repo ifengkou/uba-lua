@@ -1,0 +1,1 @@
+[{"appid": "abc001", "xwho": 10000001, "xwhat": "$startup", "xwhen": 1631405036123, "properties": {"$session_id": "592dd68f8967840c479d5d89ffaf9955", "$platform": "WeChat", "$is_first_day": false, "$is_first_time": false, "$import_flag": 1}}]
