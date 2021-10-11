@@ -8,7 +8,6 @@ module={}
 -- bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic uba-abc001
 
 local Topic_Partition = ngx.shared.shared_data
-local async_producer = producer:new(config.kafka_broker_list, config.kafka_producer_conf)
 
 local function get_topic_from_message(message)
     return config.topic_prefix..message[config.model_keys.appid]
@@ -58,12 +57,7 @@ local function check_event_model(message)
     return 0
 end
 
-local function batch_error_handle(topic, partition_id, message_queue, index, err, retryable)
-    for key, value in pairs(message_queue) do
-        -- TODO send error log
-        ngx.log(ngx.ERR,value)
-    end
-end
+
 
 
 
@@ -81,7 +75,7 @@ function module.send_message(message)
     local uid = get_uid_from_message(message)
     local partition = get_topic_partitions(topic)
     local key = tonumber(uid) % tonumber(partition)
-
+    local async_producer = producer:new(config.kafka_broker_list, config.kafka_producer_conf)
     ngx.log(ngx.DEBUG, "send to kafka: "..topic..",pt="..partition)
     local ok, err = async_producer:send(topic, tostring(key), msg_str)
     --上报异常处理

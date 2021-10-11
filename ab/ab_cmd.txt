@@ -5,4 +5,4 @@ ab -n 1 -c 1 -p postdata.txt -T application/json "http://10.128.2.86/test_kafka2
 ab -n 100000 -c 10000 -p postdata.txt -T application/json "http://10.128.2.86/test_kafka2"
 
 
-ab -n 100000 -c 20000 -p postdata.txt -T application/json "http://10.128.2.86/test_kafka2"
+ab -n 200000 -c 20000 -p postdata.txt -T application/json "http://10.128.2.86/test_kafka2"
